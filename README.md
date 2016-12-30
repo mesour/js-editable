@@ -1,11 +1,11 @@
-[![NPM version](https://img.shields.io/npm/v/mesour-filter.svg?style=flat-square)](http://badge.fury.io/js/mesour-filter)
+[![NPM version](https://img.shields.io/npm/v/mesour-editable.svg?style=flat-square)](http://badge.fury.io/js/mesour-editable)
 
-# Mesour filter component
+# Mesour editable component
 
-Mesour filter component.
+Mesour editable component.
 
 ## Installation
 
 ```
-$ npm install mesour-filter
+$ npm install mesour-editable
 ```
