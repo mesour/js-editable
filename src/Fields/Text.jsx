@@ -1,4 +1,5 @@
 import FieldType from './../Utils/FieldType';
+import Validators from './../Utils/Validators';
 import EditablePopover from './../EditablePopover';
 
 export default class Text
@@ -10,6 +11,7 @@ export default class Text
 	popover;
 	input;
 	element;
+	rules = [];
 
 	constructor(fieldStructure, editableClosure, element, parameters, identifier, isSpecial)
 	{
@@ -17,6 +19,7 @@ export default class Text
 		this.editableClosure = editableClosure;
 		this.element = element;
 		this.oldValue = $.trim(element.text());
+		this.rules = fieldStructure['rules'] || [];
 
 		this.initialize(fieldStructure, identifier, isSpecial);
 	}
@@ -54,7 +57,17 @@ export default class Text
 		this.input.css('width', '100%');
 
 		this.popover.onSave(() => {
-			this.getEditable().save(fieldName, identifier);
+			let isValid = Validators.validate(
+				this.rules,
+				this.input.val(),
+				this.input,
+				true,
+				this.isNullable,
+				() => {return this}
+			);
+			if (isValid) {
+				this.getEditable().save(fieldName, identifier);
+			}
 		});
 		this.popover.onReset(() => {
 			this.reset();
@@ -99,8 +112,8 @@ export default class Text
 
 	save()
 	{
-		this.popover.popover.destroy();
-		this.element.empty().text(input.val());
+		this.popover.destroy();
+		this.element.empty().text(this.input.val());
 	}
 
 }

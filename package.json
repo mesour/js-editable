@@ -1,6 +1,6 @@
 {
   "name": "mesour-editable",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Mesour editable component",
   "main": "index.js",
   "devDependencies": {
@@ -41,6 +41,7 @@
   "dependencies": {
     "mesour-core": "^0.1.0",
     "mesour-datetime": "^0.1.0",
+    "mesour-validator": "^0.1.0",
     "mesour-modal": "^0.1.0"
   }
 }

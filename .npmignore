@@ -2,3 +2,6 @@ example
 sass
 src
 .npmignore
+.idea
+webpack.config.js
+webpack.config.min.js

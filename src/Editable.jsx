@@ -1,3 +1,4 @@
+import Alert from './Utils/Alert';
 import EditableModal from './EditableModal';
 import FieldEditor from './FieldEditor';
 
@@ -315,9 +316,9 @@ export default class Editable
 			let data = jQuery.parseJSON(response.responseText);
 			if (data.error) {
 				if (isNormal) {
-					let alertElement = this.createAlert(data.error.message, 'danger', false),
+					let alertElement = Alert.createAlert(data.error.message, 'danger', false),
 						input;
-					if (!_this.isInline()) {
+					if (!this.isInline()) {
 						let popover = mesour.popover.getTip(field.getField()).find('.popover-content');
 						popover.find('.mesour-editable-alert').remove();
 
@@ -332,14 +333,14 @@ export default class Editable
 						}
 						input = field.getField().find('[name="' + data.error.field + '"]');
 					}
-					if (data.error.field) {
 
+					if (data.error.field) {
 						input.closest('.input-group').addClass('has-error');
 						input.trigger('focus');
 					}
 				} else {
 					form.find('.mesour-editable-alert').remove();
-					form.prepend(this.createAlert(data.error.message));
+					form.prepend(Alert.createAlert(data.error.message));
 					if (data.error.field) {
 						let input = form.find('[name="' + data.error.field + '"]');
 						input.closest('.form-group').addClass('has-error');
@@ -358,7 +359,7 @@ export default class Editable
 				if (!isNormal) {
 					this.getEditableWidget().removeReference(this.name, table);
 					this.modal.getModalBody().empty().append(
-						this.createAlert(this.getEditableWidget().getTranslate('dataSaved'), 'success', false)
+						Alert.createAlert(this.getEditableWidget().getTranslate('dataSaved'), 'success', false)
 					);
 					this.modal.disable();
 				}
@@ -366,26 +367,16 @@ export default class Editable
 				this.onComplete(fieldName);
 			} else {
 				let message = this.getEditableWidget().getTranslate('statusError').replace('%status%', response.status);
-				if (isNormal) {
+				if (!isNormal) {
 					alert(message);
 				} else {
 					form.find('.mesour-editable-alert').remove();
 					form.prepend(
-						this.createAlert(message, 'danger')
+						Alert.createAlert(message, 'danger')
 					);
 				}
 			}
 		}
 	};
-
-	createAlert(message, type, dismissButton)
-	{
-		type = !type ? 'danger' : type;
-		let $alert = $('<div class="alert alert-' + type + ' mesour-editable-alert">' + message + '</div>');
-		if (typeof dismissButton === 'undefined' || dismissButton) {
-			$alert.prepend('<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>');
-		}
-		return $alert;
-	}
 
 }

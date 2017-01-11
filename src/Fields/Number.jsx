@@ -12,6 +12,7 @@ export default class Number
 	input;
 	element;
 	fieldName;
+	rules = [];
 	unit;
 	separator;
 	decimalPoint;
@@ -27,6 +28,7 @@ export default class Number
 		this.popover = this.text.getEditablePopover();
 
 		this.fieldName = fieldStructure['name'];
+		this.rules = fieldStructure['rules'];
 		this.unit = fieldStructure['unit'];
 		this.separator = fieldStructure['separator'];
 		this.decimalPoint = fieldStructure['decimalPoint'];
@@ -39,8 +41,8 @@ export default class Number
 	initialize(identifier)
 	{
 		let save = () => {
-			let isValid = Validators.validateNumber(
-				this.getEditable(),
+			let isValid = Validators.validate(
+				this.rules,
 				this.input.val(),
 				this.input,
 				true,

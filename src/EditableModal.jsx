@@ -17,7 +17,7 @@ export default class EditableModal
 		this.modalName = this.element.attr('data-mesour-modal')
 	}
 
-	addTextarea(group, id, name, key, placeholder)
+	addTextarea(group, id, name, key, placeholder, rules)
 	{
 		let label = jQuery('<label for="' + id + '">' + name + '</label>');
 		group.append(label);
@@ -28,12 +28,14 @@ export default class EditableModal
 		}
 		group.append(textField);
 
+		textField.data('rules', rules || []);
+
 		textField.on('keydown', this.getEditable().textareaTabFix);
 
 		return textField;
 	}
 
-	addTextField(group, id, name, key, placeholder)
+	addTextField(group, id, name, key, placeholder, rules)
 	{
 		let label = jQuery('<label for="' + id + '">' + name + '</label>');
 		group.append(label);
@@ -44,11 +46,12 @@ export default class EditableModal
 		}
 		group.append(textField);
 
-		textField.on('keydown', function(e) {
+		textField.data('rules', rules || []);
+
+		textField.on('keydown', (e) => {
 			if (e.keyCode === 13) {
 				e.preventDefault();
-				let formSave = element.find('[data-editable-form-save]');
-				formSave.trigger('click');
+				this.element.find('[data-editable-form-save]').trigger('click');
 			}
 		});
 
@@ -120,7 +123,7 @@ export default class EditableModal
 
 			if (structure['type'] === FieldType.TYPE_TEXT) {
 				let field,
-					args = [addFormGroup(), this.name + structure['name'], structure['title'], structure['name'], structure['title']];
+					args = [addFormGroup(), this.name + structure['name'], structure['title'], structure['name'], structure['title'], structure['rules']];
 				if (structure['hasTextarea'] === 'false') {
 					field = this.addTextField.apply(_this, args);
 				} else if (structure['hasTextarea'] === 'true') {
@@ -134,7 +137,8 @@ export default class EditableModal
 					this.name + structure['name'],
 					structure['title'],
 					structure['name'],
-					NumberHelper.numberFormat(0, structure['decimals'])
+					NumberHelper.numberFormat(0, structure['decimals']),
+					structure['rules']
 				);
 				field.attr('data-validate-number', 'true');
 				field.attr('data-nullable', structure['nullable'] ? 'true' : 'false');
@@ -223,17 +227,12 @@ export default class EditableModal
 				}
 				let input = _form.find('[name="' + i + '"]');
 
-				if (
-					input.attr('data-validate-number') && input.closest('.main-form-group').is(':visible')
-					&& !Validators.validateNumber(
-						_this.editable,
-						values[i],
-						input,
-						false,
-						input.attr('data-nullable') === 'true' ? true : false
-					)
-				) {
-					valid = false;
+				let rules = input.data('rules') || [];
+				if (rules.length > 0 && input.closest('.main-form-group').is(':visible')) {
+					let isNullable = input.attr('data-nullable') === 'true' ? true : false;
+					if (!Validators.validate(rules, values[i], input, false, isNullable)) {
+						valid = false;
+					}
 				}
 			}
 
