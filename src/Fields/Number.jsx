@@ -19,11 +19,11 @@ export default class Number
 	decimals;
 	isNullable;
 
-	constructor(fieldStructure, editableClosure, element, parameters, identifier, isSpecial)
+	constructor(fieldStructure, editableClosure, element, parameters, identifier, isSpecial, value)
 	{
 		this.editableClosure = editableClosure;
 		this.element = element;
-		this.text = new Text(fieldStructure, editableClosure, element, parameters, identifier, true);
+		this.text = new Text(fieldStructure, editableClosure, element, parameters, identifier, true, value);
 		this.input = this.text.getInput();
 		this.popover = this.text.getEditablePopover();
 

@@ -13,12 +13,12 @@ export default class Text
 	element;
 	rules = [];
 
-	constructor(fieldStructure, editableClosure, element, parameters, identifier, isSpecial)
+	constructor(fieldStructure, editableClosure, element, parameters, identifier, isSpecial, value)
 	{
 		this.parameters = parameters || {};
 		this.editableClosure = editableClosure;
 		this.element = element;
-		this.oldValue = $.trim(element.text());
+		this.oldValue = value ? value : $.trim(element.text());
 		this.rules = fieldStructure['rules'] || [];
 
 		this.initialize(fieldStructure, identifier, isSpecial);

@@ -33,9 +33,9 @@ export default class FieldEditor
 		}
 
 		if (this.type === FieldType.TYPE_TEXT) {
-			this.field = new Text(fieldStructure, editableClosure, element, this.parameters, identifier);
+			this.field = new Text(fieldStructure, editableClosure, element, this.parameters, identifier, false, value);
 		} else if (this.type === FieldType.TYPE_NUMBER) {
-			this.field = new Number(fieldStructure, editableClosure, element, this.parameters, identifier);
+			this.field = new Number(fieldStructure, editableClosure, element, this.parameters, identifier, false, value);
 		} else if (this.type === FieldType.TYPE_DATE) {
 			this.field = new Date(fieldStructure, editableClosure, element, this.parameters, identifier, value);
 		} else if (this.type === FieldType.TYPE_ENUM) {
