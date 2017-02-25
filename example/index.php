@@ -43,7 +43,7 @@ if (isset($_GET['m_do'])) {
 
 		<div class="container" id="m_snippet-mesourApp-editableTest">
 
-			<div><script>var mesour = !mesour ? {} : mesour;mesour.editable = !mesour.editable ? [] : mesour.editable;mesour.editable.push(["enable","mesourApp-editableTest","false","false"]);mesour.editable.push(["setTranslations",{"select":"Select...","selectOne":"Select one","selectExisting":"Select from existing","allSelected":"All existing companies are attachet to this client...","attachExisting":"Attach existing","createNew":"Create new","dataSaved":"Successfuly saved","invalidNumber":"Value must be valid number","statusError":"ERROR! Status: %status%. Try save data later.","emptyValue":"- none","saveEmptyValue":"Really save empty value?","saveItem":"Save","cancelEdit":"Cancel","editItem":"Edit in form","reset":"Cancel","emptyButton":"Set empty value"}]);</script><div class="modal fade" tabindex="-1" role="dialog" data-editable-modal="mesourApp-editableTest" data-mesour-modal="mesourApp-editableTest-modal" data-show="false" data-mesour-show="false" data-keyboard="true" data-backdrop="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body" mesour-modal-body="true" data-ajax-loading="false" data-is-cached="false"></div><div class="modal-footer"><button class="btn btn-default" role="button" data-dismiss="modal">Close</button><a data-editable-form-save="true" class="btn btn-primary" role="button">Save</a></div></div></div></div></div>
+			<div><script>var mesour = !mesour ? {} : mesour;mesour.editable = !mesour.editable ? [] : mesour.editable;mesour.editable.push(["enable","mesourApp-editableTest","false","false"]);mesour.editable.push(["setTranslations",{"select":"Select...","selectOne":"Select one","selectExisting":"Select from existing","allSelected":"All existing companies are attachet to this client...","attachExisting":"Attach existing","createNew":"Create new","dataSaved":"Successfuly saved","invalidNumber":"Value must be valid number","statusError":"ERROR! Status: %status%. Try save data later.","emptyValue":"- none","saveEmptyValue":"Really save empty value?","saveItem":"Save","cancelEdit":"Cancel","editItem":"Edit in form","reset":"Cancel","emptyButton":"Set empty value"}]);</script><div class="modal fade" tabindex="-1" role="dialog" data-editable-modal="mesourApp-editableTest" data-mesour-modal="mesourApp-editableTest-modal" data-show="false" data-mesour-show="false" data-keyboard="true" data-backdrop="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body" data-mesour-modal-body="true" data-ajax-loading="false" data-is-cached="false"></div><div class="modal-footer"><button class="btn btn-default" role="button" data-dismiss="modal">Close</button><a data-editable-form-save="true" class="btn btn-primary" role="button">Save</a></div></div></div></div></div>
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h3 class="panel-title">User detail</h3>
@@ -70,8 +70,8 @@ if (isset($_GET['m_do'])) {
 								</tr>
 								<tr>
 									<th>Birth date</th>
-									<td data-editable="last_login" data-id="1" data-value="2016-03-17 00:07:03" title="Enter birth date">
-										2016-03-17 00:07:03							</td>
+									<td data-editable="last_login" data-id="1" data-value="2016-03-17 12:07:03" title="Enter birth date">
+										2016-03-17 12:07:03							</td>
 								</tr>
 								<tr>
 									<th>Addresses</th>
@@ -143,6 +143,15 @@ if (isset($_GET['m_do'])) {
 										<ul>
 											<li data-editable="companies" data-no-action="true">
 										<span data-editable="companies" data-id="1"
+										      data-value="1">Google CZ</span>
+												<a href="#" class="fa fa-remove" data-editable="companies"
+												   data-id="1"
+												   data-value="1"
+												   data-confirm="Really unattach company Google CZ?"
+												   data-is-remove="true"></a>
+											</li>
+											<li data-editable="companies" data-no-action="true">
+										<span data-editable="companies" data-id="1"
 										      data-value="2">Google</span>
 												<a href="#" class="fa fa-remove" data-editable="companies"
 												   data-id="1"
@@ -170,11 +179,20 @@ if (isset($_GET['m_do'])) {
 											</li>
 											<li data-editable="companies" data-no-action="true">
 										<span data-editable="companies" data-id="1"
-										      data-value="8">Honda</span>
+										      data-value="5">Foxconn</span>
 												<a href="#" class="fa fa-remove" data-editable="companies"
 												   data-id="1"
-												   data-value="8"
-												   data-confirm="Really unattach company Honda?"
+												   data-value="5"
+												   data-confirm="Really unattach company Foxconn?"
+												   data-is-remove="true"></a>
+											</li>
+											<li data-editable="companies" data-no-action="true">
+										<span data-editable="companies" data-id="1"
+										      data-value="6">Verizon</span>
+												<a href="#" class="fa fa-remove" data-editable="companies"
+												   data-id="1"
+												   data-value="6"
+												   data-confirm="Really unattach company Verizon?"
 												   data-is-remove="true"></a>
 											</li>
 											<li>
