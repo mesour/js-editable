@@ -154,6 +154,7 @@ export default class EditablePopover
 		} else {
 			this.element.empty().append(this.oldContent);
 		}
+		this.getEditable().removeEditedField(this.fieldName, this.identifier);
 	}
 
 }

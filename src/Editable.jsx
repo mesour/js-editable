@@ -85,6 +85,15 @@ export default class Editable
 		}
 	}
 
+	isFieldOpened(fieldName, identifier)
+	{
+		if (identifier) {
+			return this.openedEdits[fieldName] && this.openedEdits[fieldName][identifier] instanceof FieldEditor;
+		} else {
+			return this.openedEdits[fieldName] && this.openedEdits[fieldName] instanceof FieldEditor;
+		}
+	}
+
 	removeEditedField(fieldName, identifier)
 	{
 		if (!this.openedEdits[fieldName]) {
@@ -180,15 +189,13 @@ export default class Editable
 		return this.name;
 	}
 
-	close(fieldName, identifier, removeEdited)
+	close(fieldName, identifier)
 	{
 		let field = this.getEditedField(fieldName, identifier, false);
 		if (field) {
 			field.resetValue();
 		}
-		if (removeEdited) {
-			this.removeEditedField(fieldName, identifier);
-		}
+		this.removeEditedField(fieldName, identifier);
 	}
 
 	refresh()

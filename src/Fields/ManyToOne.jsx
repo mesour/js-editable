@@ -92,7 +92,7 @@ export default class ManyToOne
 			this.editButton.on('click', (e) => {
 				e.preventDefault();
 
-				this.getEditable().close(this.fieldName, identifier, true);
+				this.getEditable().close(this.fieldName, identifier);
 				this.getEditable().edit(this.fieldName, this.element, identifier, value, true);
 			});
 
