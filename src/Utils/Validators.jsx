@@ -30,6 +30,10 @@ export default class Validators
 
 	static validateField(val, input, isNormal, isNullable, fieldClosure, message, type, arg)
 	{
+		if (isNullable && (!val || val === '')) {
+			return true;
+		}
+
 		if (!mesour.validator.validate(type, val, arg)) {
 			Validators.applyError(input, isNormal, fieldClosure, message);
 			return false;

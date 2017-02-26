@@ -2,6 +2,8 @@ export default class EditablePopover
 {
 
 	element;
+	fieldName;
+	identifier;
 	editableClosure;
 	prependButtons = {};
 	input;
@@ -10,9 +12,11 @@ export default class EditablePopover
 	onSaveCallback;
 	onResetCallback;
 
-	constructor(editableClosure, element, input, softReset, prependButtons)
+	constructor(fieldName, identifier, editableClosure, element, input, softReset, prependButtons)
 	{
 		this.element = element;
+		this.fieldName = fieldName;
+		this.identifier = identifier;
 		this.editableClosure = editableClosure;
 		this.prependButtons = prependButtons || {};
 		this.input = input;
@@ -112,6 +116,7 @@ export default class EditablePopover
 
 		resetButton.on('click', function(e) {
 			e.preventDefault();
+			_this.getEditable().removeEditedField(_this.fieldName, _this.identifier)
 			if (typeof _this.onResetCallback === 'function') {
 				_this.onResetCallback.apply(this, [e]);
 			}

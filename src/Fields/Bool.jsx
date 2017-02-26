@@ -49,7 +49,7 @@ export default class Bool
 			});
 		}
 
-		this.popover = new EditablePopover(this.editableClosure, this.element, this.input, false, this.prependButtons);
+		this.popover = new EditablePopover(this.fieldName, identifier, this.editableClosure, this.element, this.input, false, this.prependButtons);
 
 		this.popover.onSave((e) => {
 			this.getEditable().save(this.fieldName, identifier);

@@ -1,6 +1,6 @@
 {
   "name": "mesour-editable",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Mesour editable component",
   "main": "index.js",
   "devDependencies": {

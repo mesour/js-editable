@@ -10,6 +10,7 @@ export default class Text
 	editableClosure;
 	popover;
 	input;
+	isNullable;
 	element;
 	rules = [];
 
@@ -20,6 +21,7 @@ export default class Text
 		this.element = element;
 		this.oldValue = value ? value : $.trim(element.text());
 		this.rules = fieldStructure['rules'] || [];
+		this.isNullable = fieldStructure['nullable'];
 
 		this.initialize(fieldStructure, identifier, isSpecial);
 	}
@@ -46,7 +48,7 @@ export default class Text
 			});
 		}
 
-		this.popover = new EditablePopover(this.editableClosure, this.element, this.input, hasSoftReset);
+		this.popover = new EditablePopover(fieldName, identifier, this.editableClosure, this.element, this.input, hasSoftReset);
 
 		if (hasTextarea) {
 			this.input.on('keydown', function(e) {
