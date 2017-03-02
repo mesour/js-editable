@@ -28,7 +28,7 @@ export default class Enum
 		this.isNullable = fieldStructure['nullable'];
 		this.removeRow = typeof this.parameters['remove_row'] !== 'undefined' ? (!this.parameters['remove_row'] ? false : true) : null;
 		this.select = $('<select class="form-control"></select>');
-		this.popover = new EditablePopover(fieldStructure['name'], identifier, editableClosure, element, this.select);
+		this.popover = new EditablePopover(fieldStructure, identifier, editableClosure, element, this.select);
 
 		this.initialize(identifier, disableEmptyValue);
 	}

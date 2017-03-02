@@ -12,14 +12,16 @@ export default class Text
 	input;
 	isNullable;
 	element;
+	stripHtml = true;
 	rules = [];
 
 	constructor(fieldStructure, editableClosure, element, parameters, identifier, isSpecial, value)
 	{
+		this.stripHtml = fieldStructure['stripHtml'] === 'false' ? false : true;
 		this.parameters = parameters || {};
 		this.editableClosure = editableClosure;
 		this.element = element;
-		this.oldValue = value ? value : $.trim(element.text());
+		this.oldValue = value ? value : (this.stripHtml ? $.trim(element.text()) : $.trim(element.html()));
 		this.rules = fieldStructure['rules'] || [];
 		this.isNullable = fieldStructure['nullable'];
 
@@ -48,7 +50,7 @@ export default class Text
 			});
 		}
 
-		this.popover = new EditablePopover(fieldName, identifier, this.editableClosure, this.element, this.input, hasSoftReset);
+		this.popover = new EditablePopover(fieldStructure, identifier, this.editableClosure, this.element, this.input, hasSoftReset);
 
 		if (hasTextarea) {
 			this.input.on('keydown', function(e) {

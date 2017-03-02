@@ -30,10 +30,10 @@ export default class Bool
 		this.input = $('<input type="checkbox" value="1">');
 		this.label = $('<label>');
 
-		this.initialize(identifier);
+		this.initialize(identifier, fieldStructure);
 	}
 
-	initialize(identifier)
+	initialize(identifier, fieldStructure)
 	{
 		if (this.nullable) {
 			let emptyButton = $('<button class="btn btn-warning" title="'+this.getEditable().getEditableWidget().getTranslate('emptyButton')+'"><i class="fa fa-ban"></i></button>');
@@ -49,7 +49,7 @@ export default class Bool
 			});
 		}
 
-		this.popover = new EditablePopover(this.fieldName, identifier, this.editableClosure, this.element, this.input, false, this.prependButtons);
+		this.popover = new EditablePopover(fieldStructure, identifier, this.editableClosure, this.element, this.input, false, this.prependButtons);
 
 		this.popover.onSave((e) => {
 			this.getEditable().save(this.fieldName, identifier);

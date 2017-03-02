@@ -3,6 +3,7 @@ export default class EditablePopover
 
 	element;
 	fieldName;
+	inline = false;
 	identifier;
 	editableClosure;
 	prependButtons = {};
@@ -12,10 +13,11 @@ export default class EditablePopover
 	onSaveCallback;
 	onResetCallback;
 
-	constructor(fieldName, identifier, editableClosure, element, input, softReset, prependButtons)
+	constructor(fieldStructure, identifier, editableClosure, element, input, softReset, prependButtons)
 	{
 		this.element = element;
-		this.fieldName = fieldName;
+		this.fieldName = fieldStructure['name'];
+		this.inline = fieldStructure['inline'] === 'true' ? true : false;
 		this.identifier = identifier;
 		this.editableClosure = editableClosure;
 		this.prependButtons = prependButtons || {};
@@ -32,7 +34,7 @@ export default class EditablePopover
 
 		content.append(this.input);
 
-		if(this.getEditable().isInline()) {
+		if(this.isInline()) {
 			content.addClass('editable-inline');
 		}
 
@@ -56,7 +58,7 @@ export default class EditablePopover
 			buttonGroup.prepend(button);
 		};
 
-		if (!this.getEditable().isInline()) {
+		if (!this.isInline()) {
 			if (this.softReset) {
 				this.softResetButton = $('<i class="fa fa-times-circle editable-soft-reset" title="' + this.getEditable().getEditableWidget().getTranslate('reset') + '"></i>');
 
@@ -140,7 +142,7 @@ export default class EditablePopover
 
 	hide()
 	{
-		if(!this.getEditable().isInline()) {
+		if(!this.isInline()) {
 			window.mesour.popover.hide(this.element);
 		} else {
 			this.element.empty().append(this.oldContent);
@@ -149,12 +151,17 @@ export default class EditablePopover
 
 	destroy()
 	{
-		if(!this.getEditable().isInline()) {
+		if(!this.isInline()) {
 			window.mesour.popover.destroy(this.element);
 		} else {
 			this.element.empty().append(this.oldContent);
 		}
 		this.getEditable().removeEditedField(this.fieldName, this.identifier);
+	}
+
+	isInline()
+	{
+		return this.inline || this.getEditable().isInline();
 	}
 
 }
