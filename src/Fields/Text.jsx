@@ -1,6 +1,5 @@
 import FieldType from './../Utils/FieldType';
 import Validators from './../Utils/Validators';
-import EditablePopover from './../EditablePopover';
 
 export default class Text
 {
@@ -50,7 +49,8 @@ export default class Text
 			});
 		}
 
-		this.popover = new EditablePopover(fieldStructure, identifier, this.editableClosure, this.element, this.input, hasSoftReset);
+		this.popover = this.getEditable()
+			.createEditablePopover(fieldStructure, identifier, this.editableClosure, this.element, this.input, hasSoftReset);
 
 		if (hasTextarea) {
 			this.input.on('keydown', function(e) {

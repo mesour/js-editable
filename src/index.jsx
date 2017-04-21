@@ -2,6 +2,7 @@ import EditableWidget from './EditableWidget.jsx';
 import 'mesour-core/dist/mesour.min.js';
 import Modal from 'mesour-modal/lib/Modal';
 import Validator from 'mesour-validator/lib/Validator';
+import Validators from './Utils/Validators';
 import PopoverWidget from './PopoverWidget';
 import DateTime from 'mesour-datetime/lib/DateTime';
 
@@ -11,6 +12,7 @@ import DateTime from 'mesour-datetime/lib/DateTime';
 	mesour.createWidget('validator', new Validator());
 	mesour.createWidget('popover', new PopoverWidget());
 	mesour.createWidget('editable', new EditableWidget());
+	mesour.editable.validators = Validators;
 })(window.mesour);
 
 import './../scss/style.scss';

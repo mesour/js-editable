@@ -6,6 +6,7 @@ export default class EditableWidget
 	items = {};
 	traslations = {};
 	references = {};
+	customFieldIterations = 0;
 
 	enable(name, isInline, isDisabledInlineAlerts)
 	{
@@ -36,6 +37,21 @@ export default class EditableWidget
 	setTranslations(translates)
 	{
 		this.traslations = translates;
+	}
+
+	addCustomField(name, customType, instance)
+	{
+		try {
+			this.getComponent(name).addCustomField(customType, instance);
+		} catch (e) {
+			if (this.customFieldIterations > 20) {
+				throw e;
+			}
+			setTimeout(() => {
+				this.customFieldIterations++;
+				this.addCustomField(name, customType, instance);
+			}, 100);
+		}
 	}
 
 	removeReference(name, table)

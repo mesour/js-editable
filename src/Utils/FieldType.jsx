@@ -46,4 +46,9 @@ export default class FieldType
 		return 'many_to_many';
 	}
 
+	static get TYPE_CUSTOM()
+	{
+		return 'custom';
+	}
+
 }

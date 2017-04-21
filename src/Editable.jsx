@@ -1,6 +1,7 @@
 import Alert from './Utils/Alert';
 import EditableModal from './EditableModal';
 import FieldEditor from './FieldEditor';
+import EditablePopover from './EditablePopover';
 
 export default class Editable
 {
@@ -13,6 +14,7 @@ export default class Editable
 	structure = {};
 	elements = {};
 	openedEdits = {};
+	customFields = {};
 	onComplete = function () {};
 
 	constructor(name, data, widgetClosure)
@@ -161,6 +163,32 @@ export default class Editable
 				() => {return this}, fieldStructure, element, identifier, value, forceForm
 			);
 		}
+	}
+
+	createEditablePopover(fieldStructure, identifier, editableClosure, element, input, hasSoftReset)
+	{
+		return new EditablePopover(fieldStructure, identifier, editableClosure, element, input, hasSoftReset);
+	}
+
+	addCustomField(customType, instance)
+	{
+		this.customFields[customType] = instance;
+	}
+
+	getCustomField(customType)
+	{
+		if (!this.customFields[customType]) {
+			throw new Error('Custom field with name ' + customType + ' not exist.');
+		}
+		return this.customFields[customType];
+	}
+
+	isCustomField(customType)
+	{
+		if (!customType || !this.customFields[customType]) {
+			return false;
+		}
+		return true;
 	}
 
 	getElementStructure(tableName)

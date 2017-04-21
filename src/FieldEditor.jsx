@@ -50,6 +50,9 @@ export default class FieldEditor
 			this.field = new OneToMany(fieldStructure, editableClosure, element, this.parameters, identifier, value);
 		} else if (this.type === FieldType.TYPE_MANY_TO_MANY) {
 			this.field = new ManyToMany(fieldStructure, editableClosure, element, this.parameters, identifier, value);
+		} else if (this.type === FieldType.TYPE_CUSTOM && editableClosure().isCustomField(fieldStructure['customType'])) {
+			let customField = editableClosure().getCustomField(fieldStructure['customType']);
+			this.field = customField.getFieldInstance(fieldStructure, editableClosure, element, this.parameters, identifier, value);
 		} else {
 			throw new Error('Unknown field type ' + this.type);
 		}

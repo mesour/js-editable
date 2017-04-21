@@ -15,7 +15,7 @@ if (isset($_GET['m_do'])) {
 			echo '{"data":[{"id":11,"user_id":1,"amount":156,"currency":"CZK"}]}';
 		}
 	} elseif ($do === 'mesourApp-editableTest-dataStructure') {
-		echo '{"data":{"fields":[{"name":"role","title":"Role","type":"enum","inline":"false","params":[{"id":0},{"id":1}],"values":{"admin":{"key":"admin","name":"Admin"},"moderator":{"key":"moderator","name":"Moderator"}},"nullable":true},{"name":"name","title":"Name","type":"text","inline":"true","params":[{"id":0},{"id":1}],"rules":[{"type":"email","message":"Test email message.","arg":null},{"type":"filled","message":"Test error message.","arg":null}],"nullable":true,"hasTextarea":"true","stripHtml":"false"},{"name":"surname","title":"Surname","type":"text","inline":"false","params":[{"id":0},{"id":1}],"rules":[{"type":"url","message":"Surname must be valid URL.","arg":null}],"nullable":true,"hasTextarea":"false","stripHtml":"true"},{"name":"email","title":"Email","type":"text","inline":"false","params":[{"id":0},{"id":1}],"rules":[],"nullable":false,"hasTextarea":"false","stripHtml":"true"},{"name":"last_login","title":"Last login","type":"date","inline":"false","params":[{"id":0},{"id":1}],"format":"YYYY-MM-DD HH:mm:ss","nullable":true},{"name":"amount","title":"Amount","type":"number","inline":"false","params":[{"id":0},{"id":1}],"rules":[],"unit":"EUR","separator":".","decimalPoint":",","decimals":2,"nullable":true},{"name":"has_pro","title":"Has PRO","type":"bool","inline":"false","params":[{"id":0},{"id":1}],"nullable":true,"description":"Has PRO"},{"name":"companies","title":"Companies","type":"many_to_many","inline":"false","params":[{"id":0,"attach_row":true,"create_new_row":true,"remove_row":true},{"id":1,"attach_row":true,"create_new_row":true,"remove_row":true}],"reference":{"table":"companies","primary_key":"id","column":"user_id","pattern":"{name}","self_column":"company_id","referenced_table":"user_companies"}},{"name":"group","title":"Group","type":"many_to_one","inline":"false","params":[{"id":0,"edit_current_row":true,"create_new_row":true,"remove_row":false},{"id":1,"edit_current_row":true,"create_new_row":true,"remove_row":false}],"reference":{"table":"groups","primary_key":"id","column":"group_id","pattern":"{name} ({members})"},"nullable":true},{"name":"addresses","title":"Addresses","type":"one_to_many","inline":"false","params":[{"id":0,"create_new_row":true,"remove_row":true},{"id":1,"create_new_row":true,"remove_row":true}],"reference":{"table":"user_addresses","primary_key":"id","column":"user_id","pattern":"{street}, {zip} {city}, {country}"}},{"name":"wallet","title":"Wallet","type":"one_to_one","inline":"false","params":[{"id":0,"create_new_row":true,"remove_row":true},{"id":1,"create_new_row":true,"remove_row":true}],"reference":{"table":"wallets","primary_key":"id","column":"wallet_id","pattern":"{amount}"},"nullable":true},{"name":"domains","title":"Domains","type":"one_to_one","inline":"false","params":{"1":{"id":1,"create_new_row":true,"remove_row":true}},"reference":{"table":"domains","primary_key":"id","column":null},"nullable":false}],"elements":{"groups":{"fields":[{"name":"name","title":"Name","type":"text","inline":"false","params":[{"id":0}],"rules":[{"type":"pattern","message":"Test email message.","arg":"[0-9a-z]{6}"}],"nullable":false,"hasTextarea":"false","stripHtml":"true"},{"name":"type","title":"Type","type":"enum","inline":"false","params":[{"id":0}],"values":{"":{"key":"","name":"--"},"first":{"key":"first","name":"First"},"second":{"key":"second","name":"Second"}},"nullable":false},{"name":"date","title":"Date","type":"date","inline":"false","params":[{"id":0}],"format":"YYYY-MM-DD HH:mm:ss","nullable":false},{"name":"members","title":"Members","type":"number","inline":"false","params":[{"id":0}],"rules":[{"type":"range","message":"Rule type range error","arg":[0,50]}],"unit":"EUR","separator":".","decimalPoint":",","decimals":2,"nullable":false}]},"wallets":{"fields":[{"name":"amount","title":"Amount","type":"number","inline":"false","params":[{"id":0}],"rules":[],"unit":null,"separator":".","decimalPoint":",","decimals":2,"nullable":false},{"name":"currency","title":"Currency","type":"enum","inline":"false","params":[{"id":0}],"values":{"CZK":{"key":"CZK","name":"CZK"},"EUR":{"key":"EUR","name":"EUR"}},"nullable":false}]},"user_addresses":{"fields":[{"name":"street","title":"Street","type":"text","inline":"false","params":[{"id":0}],"rules":[],"nullable":false,"hasTextarea":"true","stripHtml":"true"},{"name":"city","title":"City","type":"text","inline":"false","params":[{"id":0}],"rules":[],"nullable":false,"hasTextarea":"false","stripHtml":"true"},{"name":"zip","title":"Zip","type":"text","inline":"false","params":[{"id":0}],"rules":[],"nullable":false,"hasTextarea":"false","stripHtml":"true"},{"name":"country","title":"Country","type":"text","inline":"false","params":[{"id":0}],"rules":[],"nullable":false,"hasTextarea":"false","stripHtml":"true"}]},"user_companies":{"fields":[]},"companies":{"fields":[{"name":"name","title":"Name","type":"text","inline":"false","params":[{"id":0}],"rules":[],"nullable":false,"hasTextarea":"false","stripHtml":"true"},{"name":"reg_num","title":"Reg. number","type":"text","inline":"false","params":[{"id":0}],"rules":[],"nullable":false,"hasTextarea":"false","stripHtml":"true"},{"name":"verified","title":"Verified","type":"bool","inline":"false","params":[{"id":0}],"nullable":false,"description":"verified"}]},"domains":{"fields":[{"name":"url","title":"Url","type":"text","inline":"false","params":[{"id":0}],"rules":[{"type":"url","message":"Url is not valid","arg":null}],"nullable":false,"hasTextarea":"false","stripHtml":"true"}]}}}}';
+		echo '{"data":{"fields":[{"name":"role","title":"Role","type":"enum","inline":"false","params":[{"id":0},{"id":1}],"values":{"admin":{"key":"admin","name":"Admin"},"moderator":{"key":"moderator","name":"Moderator"}},"nullable":true},{"name":"name","title":"Name","type":"text","inline":"true","params":[{"id":0},{"id":1}],"rules":[{"type":"email","message":"Test email message.","arg":null},{"type":"filled","message":"Test error message.","arg":null}],"nullable":true,"hasTextarea":"true","stripHtml":"false"},{"name":"surname","title":"Surname","type":"text","inline":"false","params":[{"id":0},{"id":1}],"rules":[{"type":"url","message":"Surname must be valid URL.","arg":null}],"nullable":true,"hasTextarea":"false","stripHtml":"true"},{"name":"email","title":"Email","type":"text","inline":"false","params":[{"id":0},{"id":1}],"rules":[],"nullable":false,"hasTextarea":"false","stripHtml":"true"},{"name":"last_login","title":"Last login","type":"date","inline":"false","params":[{"id":0},{"id":1}],"format":"YYYY-MM-DD HH:mm:ss","nullable":true},{"name":"amount","title":"Amount","type":"number","inline":"false","params":[{"id":0},{"id":1}],"rules":[],"unit":"EUR","separator":".","decimalPoint":",","decimals":2,"nullable":true},{"name":"has_pro","title":"Has PRO","type":"bool","inline":"false","params":[{"id":0},{"id":1}],"nullable":true,"description":"Has PRO"},{"name":"companies","title":"Companies","type":"many_to_many","inline":"false","params":[{"id":0,"attach_row":true,"create_new_row":true,"remove_row":true},{"id":1,"attach_row":true,"create_new_row":true,"remove_row":true}],"reference":{"table":"companies","primary_key":"id","column":"user_id","pattern":"{name}","self_column":"company_id","referenced_table":"user_companies"}},{"name":"group","title":"Group","type":"many_to_one","inline":"false","params":[{"id":0,"edit_current_row":true,"create_new_row":true,"remove_row":false},{"id":1,"edit_current_row":true,"create_new_row":true,"remove_row":false}],"reference":{"table":"groups","primary_key":"id","column":"group_id","pattern":"{name} ({members})"},"nullable":true},{"name":"addresses","title":"Addresses","type":"one_to_many","inline":"false","params":[{"id":0,"create_new_row":true,"remove_row":true},{"id":1,"create_new_row":true,"remove_row":true}],"reference":{"table":"user_addresses","primary_key":"id","column":"user_id","pattern":"{street}, {zip} {city}, {country}"}},{"name":"wallet","title":"Wallet","type":"one_to_one","inline":"false","params":[{"id":0,"create_new_row":true,"remove_row":true},{"id":1,"create_new_row":true,"remove_row":true}],"reference":{"table":"wallets","primary_key":"id","column":"wallet_id","pattern":"{amount}"},"nullable":true},{"name":"special","title":"Special","type":"custom","inline":"false","params":[{"id":0}],"nullable":false,"customType":"special"},{"name":"domains","title":"Domains","type":"one_to_one","inline":"false","params":{"1":{"id":1,"create_new_row":true,"remove_row":true}},"reference":{"table":"domains","primary_key":"id","column":null},"nullable":false}],"elements":{"groups":{"fields":[{"name":"name","title":"Name","type":"text","inline":"false","params":[{"id":0}],"rules":[{"type":"pattern","message":"Test email message.","arg":"[0-9a-z]{6}"}],"nullable":false,"hasTextarea":"false","stripHtml":"true"},{"name":"type","title":"Type","type":"enum","inline":"false","params":[{"id":0}],"values":{"":{"key":"","name":"--"},"first":{"key":"first","name":"First"},"second":{"key":"second","name":"Second"}},"nullable":false},{"name":"date","title":"Date","type":"date","inline":"false","params":[{"id":0}],"format":"YYYY-MM-DD HH:mm:ss","nullable":false},{"name":"members","title":"Members","type":"number","inline":"false","params":[{"id":0}],"rules":[{"type":"range","message":"Rule type range error","arg":[0,50]}],"unit":"EUR","separator":".","decimalPoint":",","decimals":2,"nullable":false}]},"wallets":{"fields":[{"name":"amount","title":"Amount","type":"number","inline":"false","params":[{"id":0}],"rules":[],"unit":null,"separator":".","decimalPoint":",","decimals":2,"nullable":false},{"name":"currency","title":"Currency","type":"enum","inline":"false","params":[{"id":0}],"values":{"CZK":{"key":"CZK","name":"CZK"},"EUR":{"key":"EUR","name":"EUR"}},"nullable":false}]},"user_addresses":{"fields":[{"name":"street","title":"Street","type":"text","inline":"false","params":[{"id":0}],"rules":[],"nullable":false,"hasTextarea":"true","stripHtml":"true"},{"name":"city","title":"City","type":"text","inline":"false","params":[{"id":0}],"rules":[],"nullable":false,"hasTextarea":"false","stripHtml":"true"},{"name":"zip","title":"Zip","type":"text","inline":"false","params":[{"id":0}],"rules":[],"nullable":false,"hasTextarea":"false","stripHtml":"true"},{"name":"country","title":"Country","type":"text","inline":"false","params":[{"id":0}],"rules":[],"nullable":false,"hasTextarea":"false","stripHtml":"true"}]},"user_companies":{"fields":[]},"companies":{"fields":[{"name":"name","title":"Name","type":"text","inline":"false","params":[{"id":0}],"rules":[],"nullable":false,"hasTextarea":"false","stripHtml":"true"},{"name":"reg_num","title":"Reg. number","type":"text","inline":"false","params":[{"id":0}],"rules":[],"nullable":false,"hasTextarea":"false","stripHtml":"true"},{"name":"verified","title":"Verified","type":"bool","inline":"false","params":[{"id":0}],"nullable":false,"description":"verified"},{"name":"special","title":"Special","type":"custom","inline":"false","params":[{"id":0}],"nullable":false,"customType":"special"}]},"domains":{"fields":[{"name":"url","title":"Url","type":"text","inline":"false","params":[{"id":0}],"rules":[{"type":"url","message":"Url is not valid","arg":null}],"nullable":false,"hasTextarea":"false","stripHtml":"true"}]}}}}';
 	} elseif ($do === 'mesourApp-editableTest-edit') {
 		echo '{"error":{"message":"Value must be valid email.","field":"email"}}';
 	}
@@ -67,6 +67,11 @@ if (isset($_GET['m_do'])) {
 								<tr>
 									<th>Email</th>
 									<td data-editable="email" data-id="1" title="Enter email">
+										test@doe.cz							</td>
+								</tr>
+								<tr>
+									<th>Special</th>
+									<td data-editable="special" data-id="1" title="Enter info">
 										test@doe.cz							</td>
 								</tr>
 								<tr>
@@ -234,6 +239,113 @@ if (isset($_GET['m_do'])) {
 	<script>
 		$(function() {
 			var COMPONENT_NAME = 'mesourApp-editableTest';
+
+			var CustomField = function(fieldStructure, editableClosure, element, parameters, identifier, value) {
+				var parameters = parameters || {},
+					oldValue = value ? value : $.trim(element.html()),
+					rules = fieldStructure['rules'] || [],
+					isNullable = fieldStructure['nullable'],
+					fieldName = fieldStructure['name'],
+					getEditable = function() {
+						return editableClosure();
+					},
+					_this = this;
+
+				var group = $('<div class="input-group input-group-sm">');
+
+				var select = $('<select id="lunch" class="form-control">');
+				select.append('<option>Baby Back Ribs</option>');
+				group.append(select);
+
+				var input = $('<input type="text" value="' + oldValue + '" class="form-control" name="' + fieldName + '">');
+				group.append(input);
+
+				input.on('keydown.mesour-editable', function(e) {
+					if (e.keyCode === 13) {
+						getEditable().save(fieldName, identifier);
+					} else if (e.keyCode === 27) {
+						_this.reset();
+					}
+				});
+
+				var popover = getEditable()
+					.createEditablePopover(fieldStructure, identifier, editableClosure, element, group);
+
+				popover.onSave(function() {
+					var isValid = mesour.editable.validators.validate(
+						rules,
+						input.val(),
+						input,
+						true,
+						isNullable,
+						function() {return _this}
+					);
+					if (isValid) {
+						getEditable().save(fieldName, identifier);
+					}
+				});
+				popover.onReset(function() {
+					_this.reset();
+				});
+
+				input.focus();
+
+				this.getElement = function() {
+					return element;
+				};
+
+				this.getValue = function() {
+					return {
+						oldValue: oldValue,
+						value: input.val(),
+						params: parameters
+					};
+				};
+
+				this.reset = function() {
+					popover.destroy();
+				};
+
+				this.save = function() {
+					popover.destroy();
+					element.empty().text(input.val());
+				};
+			};
+
+			var Field = function() {
+
+				this.getFieldInstance = function(fieldStructure, editableClosure, element, parameters, identifier, value) {
+					return new CustomField(fieldStructure, editableClosure, element, parameters, identifier, value);
+				};
+
+				this.createFormElement = function(group, id, fieldStructure, editableClosure) {
+					var title = fieldStructure['title'],
+						name = fieldStructure['name'];
+
+					var label = jQuery('<label for="' + id + '">' + title + '</label>');
+					group.append(label);
+
+					var inputGroup = $('<div class="input-group">');
+
+					var select = $('<select id="lunch" class="form-control" name="' + name + '-select">');
+					select.append('<option>--</option>');
+					select.append('<option value="1">Baby Back Ribs</option>');
+					select.append('<option value="2">Foo value</option>');
+					inputGroup.append(select);
+
+					var input = $('<input type="text" class="form-control" id="' + id + '" name="' + name + '">');
+					inputGroup.append(input);
+
+					group.append(inputGroup);
+
+					//textField.data('rules', fieldStructure['rules'] || []);
+				};
+
+			};
+
+			window.mesour = !window.mesour ? {} : window.mesour;
+			window.mesour.editable = !window.mesour.editable ? [] : window.mesour.editable;
+			window.mesour.editable.push(['addCustomField', COMPONENT_NAME, 'special', new Field()]);
 
 			$(document).on('click', '[data-editable]', function(e) {
 				var $this = $(this);

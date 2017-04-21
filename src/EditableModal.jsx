@@ -122,15 +122,18 @@ export default class EditableModal
 			let structure = dataStructure[i];
 
 			if (structure['type'] === FieldType.TYPE_TEXT) {
-				let field,
-					args = [addFormGroup(), this.name + structure['name'], structure['title'], structure['name'], structure['title'], structure['rules']];
+				let args = [addFormGroup(), this.name + structure['name'], structure['title'], structure['name'], structure['title'], structure['rules']];
 				if (structure['hasTextarea'] === 'false') {
-					field = this.addTextField.apply(_this, args);
+					this.addTextField.apply(_this, args);
 				} else if (structure['hasTextarea'] === 'true') {
-					field = this.addTextarea.apply(_this, args);
+					this.addTextarea.apply(_this, args);
 				}
+			} else if (structure['type'] === FieldType.TYPE_CUSTOM) {
+				let args = [addFormGroup(), this.name + structure['name'], structure['title'], structure['name'], structure['title'], structure['rules']];
+				this.getEditable().getCustomField(structure['customType'])
+					.createFormElement(addFormGroup(), this.name + structure['name'], structure, this.editableCallback);
 			} else if (structure['type'] === FieldType.TYPE_BOOL) {
-				let field = this.addCheckboxField(addFormGroup('checkbox'), this.name + structure['name'], structure['title'], structure['name']);
+				this.addCheckboxField(addFormGroup('checkbox'), this.name + structure['name'], structure['title'], structure['name']);
 			} else if (structure['type'] === FieldType.TYPE_NUMBER) {
 				let field = this.addTextField(
 					addFormGroup(),
