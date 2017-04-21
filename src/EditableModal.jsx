@@ -346,6 +346,16 @@ export default class EditableModal
 			let hiddenField = this.addHiddenField(form, _key, hidden[_key]);
 			hiddenField.attr('data-editable-in-data', 'true');
 		}
+
+		let customFields = this.getEditable().getCustomFields();
+		for(let i in customFields) {
+			if (!customFields.hasOwnProperty(i)) {
+				continue;
+			}
+			if (typeof customFields[i].fillForm === 'function') {
+				customFields[i].fillForm(form, values);
+			}
+		}
 	}
 
 	getEditable()

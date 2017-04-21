@@ -175,6 +175,11 @@ export default class Editable
 		this.customFields[customType] = instance;
 	}
 
+	getCustomFields()
+	{
+		return this.customFields;
+	}
+
 	getCustomField(customType)
 	{
 		if (!this.customFields[customType]) {

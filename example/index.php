@@ -318,6 +318,13 @@ if (isset($_GET['m_do'])) {
 					return new CustomField(fieldStructure, editableClosure, element, parameters, identifier, value);
 				};
 
+				this.fillForm = function(form, values) {
+					var special = form.find('[name=special]');
+					if (special.is('*')) {
+						special.val(values['name']);
+					}
+				};
+
 				this.createFormElement = function(group, id, fieldStructure, editableClosure) {
 					var title = fieldStructure['title'],
 						name = fieldStructure['name'];

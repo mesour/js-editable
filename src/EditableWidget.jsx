@@ -6,7 +6,7 @@ export default class EditableWidget
 	items = {};
 	traslations = {};
 	references = {};
-	customFieldIterations = 0;
+	onLoadCallbacks = {};
 
 	enable(name, isInline, isDisabledInlineAlerts)
 	{
@@ -23,6 +23,15 @@ export default class EditableWidget
 				});
 				this.items[name].setInline(isInline);
 				this.items[name].setDisabledInlineAlerts(isDisabledInlineAlerts);
+
+				if (this.onLoadCallbacks[name] && this.onLoadCallbacks[name].length > 0) {
+					for (let i in this.onLoadCallbacks[name]) {
+						if (!this.onLoadCallbacks[name].hasOwnProperty(i)) {
+							continue;
+						}
+						this.onLoadCallbacks[name][i].apply(this, [this.items[name]]);
+					}
+				}
 			} catch (e) {
 				throw e;
 			}
@@ -41,16 +50,22 @@ export default class EditableWidget
 
 	addCustomField(name, customType, instance)
 	{
+		this.onComponentLoad(name, (component) => {
+			component.addCustomField(customType, instance);
+		});
+	}
+
+	onComponentLoad(name, callback)
+	{
+		let component;
 		try {
-			this.getComponent(name).addCustomField(customType, instance);
+			component = this.getComponent(name);
+			callback.apply(this, [component]);
 		} catch (e) {
-			if (this.customFieldIterations > 20) {
-				throw e;
+			if (!this.onLoadCallbacks[name]) {
+				this.onLoadCallbacks[name] = [];
 			}
-			setTimeout(() => {
-				this.customFieldIterations++;
-				this.addCustomField(name, customType, instance);
-			}, 100);
+			this.onLoadCallbacks[name].push(callback);
 		}
 	}
 
