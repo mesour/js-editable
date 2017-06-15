@@ -163,7 +163,10 @@ export default class EditableModal
 						continue;
 					}
 					let current = structure['values'][j];
-					select.append('<option value="' + current['key'] + '">' + current['name'] + '</option>');
+
+					let option = this.createOption(current['key'], current['name']);
+
+					select.append(option);
 				}
 				group.append(select);
 			} else if (structure['type'] === FieldType.TYPE_DATE) {
@@ -173,6 +176,32 @@ export default class EditableModal
 		}
 
 		return form;
+	}
+
+	createOption(key, name)
+	{
+		if (typeof name === 'string') {
+			let option = $('<option>')
+				.attr('value', key)
+				.text(name);
+
+			if (key == this.value) {
+				option.prop('selected', true);
+			}
+			return option;
+		} else {
+			let optgroup = $('<optgroup>')
+				.attr('label', key);
+
+			for (let i in name) {
+				if (!name.hasOwnProperty(i)) {
+					continue;
+				}
+				optgroup.append(this.createOption(i, name[i]));
+			}
+
+			return optgroup;
+		}
 	}
 
 	getName()
