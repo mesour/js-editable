@@ -41,13 +41,9 @@ export default class Enum
 			if (!this.values.hasOwnProperty(i)) {
 				continue;
 			}
-			let option = $('<option>')
-				.attr('value', this.values[i]['key'])
-				.text(this.values[i]['name']);
+			let value = this.values[i];
 
-			if (this.values[i]['key'] == this.value) {
-				option.prop('selected', true);
-			}
+			let option = this.createOption(value['key'], value['name']);
 
 			this.select.append(option);
 		}
@@ -68,6 +64,32 @@ export default class Enum
 		this.popover.onReset(() => {
 			this.reset();
 		});
+	}
+
+	createOption(key, name)
+	{
+		if (typeof name === 'string') {
+			let option = $('<option>')
+				.attr('value', key)
+				.text(name);
+
+			if (key == this.value) {
+				option.prop('selected', true);
+			}
+			return option;
+		} else {
+			let optgroup = $('<optgroup>')
+				.attr('label', key);
+
+			for (let i in name) {
+				if (!name.hasOwnProperty(i)) {
+					continue;
+				}
+				optgroup.append(this.createOption(i, name[i]));
+			}
+
+			return optgroup;
+		}
 	}
 
 	getEditable()
